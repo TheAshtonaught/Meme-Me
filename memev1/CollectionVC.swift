@@ -11,20 +11,17 @@ import UIKit
 private let reuseIdentifier = "memeCollectionViewCell"
 
 
-class CollectionVC: UICollectionViewController {
+class CollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var memes: [Meme]!
-
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        
-        // Register cell classes
-        // self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
     }
     override func viewWillAppear(animated: Bool) {
+        tabBarController?.tabBar.hidden = false
         let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         memes = applicationDelegate.memes
         
@@ -36,19 +33,22 @@ class CollectionVC: UICollectionViewController {
 
         return memes.count
     }
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        flowLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.minimumLineSpacing = 0
+
+        return CGSize(width: collectionView.frame.width/3.025, height: collectionView.frame.width/4.1)
+    }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.item]
+        cell.memeImg.image = meme.memedImage
         
-        
-        cell.memeImg.image = meme.image
-        cell.topTextField.text = meme.topText
-        cell.bottomTextField.text = meme.bottomText
-        
-        stylizeTextField(cell.bottomTextField)
-        stylizeTextField(cell.topTextField)
-    
     
         return cell
     }
@@ -60,9 +60,5 @@ class CollectionVC: UICollectionViewController {
         print("item selected")
     }
     
-    func stylizeTextField(textField: UITextField) {
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = NSTextAlignment.Center
-    }
 
 }

@@ -22,6 +22,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUI()
+        
         subscribeToKeyboardNotifications()
         pickerController.delegate = self
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
@@ -59,6 +60,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         dismissViewControllerAnimated(true, completion: nil)
     }
     func setUI() {
+        tabBarController?.tabBar.hidden = true
+        hideBars(false)
         stylizeTextField(topTextField)
         stylizeTextField(bottomTextField)
         topTextField.text = "TOP"
@@ -146,6 +149,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     func hideBars(hide: Bool) {
         toolbar.hidden = hide
         navBar.hidden = hide
+        
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -184,6 +188,9 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                
                 self.save()
                 self.hideBars(false)
+                let collectionVC = self.storyboard!.instantiateViewControllerWithIdentifier("collectionVC")
+                self.navigationController?.pushViewController(collectionVC, animated: true)
+                
                 print("you have successfully saved a meme")
             }else {
                 print(error.debugDescription)
