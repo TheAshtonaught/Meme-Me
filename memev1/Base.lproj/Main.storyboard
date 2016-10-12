@@ -67,6 +67,11 @@
                                                 <action selector="shareButtonPressed:" destination="7nb-cX-U9D" id="s6z-PW-Txd"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="PqQ-KS-RgC">
+                                            <connections>
+                                                <action selector="cancelBtnPressed:" destination="7nb-cX-U9D" id="8cO-PP-6Yx"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -110,10 +115,51 @@
             </objects>
             <point key="canvasLocation" x="4720" y="-1078"/>
         </scene>
+        <!--Detail MemeVC-->
+        <scene sceneID="X7H-gF-290">
+            <objects>
+                <viewController storyboardIdentifier="DetailMemeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wIf-5y-iaJ" customClass="DetailMemeVC" customModule="memev1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2iV-ek-zgt"/>
+                        <viewControllerLayoutGuide type="bottom" id="489-b0-pDo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DpY-Sn-SFj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QXd-1N-k2H">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QXd-1N-k2H" firstAttribute="leading" secondItem="DpY-Sn-SFj" secondAttribute="leading" id="HMA-mL-Gsw"/>
+                            <constraint firstItem="QXd-1N-k2H" firstAttribute="top" secondItem="2iV-ek-zgt" secondAttribute="bottom" id="Owv-5k-WdA"/>
+                            <constraint firstItem="QXd-1N-k2H" firstAttribute="bottom" secondItem="489-b0-pDo" secondAttribute="top" id="i5a-Rj-WYB"/>
+                            <constraint firstAttribute="trailing" secondItem="QXd-1N-k2H" secondAttribute="trailing" id="px4-Vo-X1j"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Edit" id="b10-wa-7Os">
+                            <connections>
+                                <action selector="editMeme:" destination="wIf-5y-iaJ" id="eWb-Ml-jUK"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="Edit" destination="b10-wa-7Os" id="AiH-KJ-JTs"/>
+                        <outlet property="Imgview" destination="QXd-1N-k2H" id="Al4-Qf-2Ft"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ud-Jv-kZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4714" y="-305"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="b8e-Qc-94I">
             <objects>
-                <tabBarController id="KcU-tW-8gh" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="initialView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KcU-tW-8gh" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="ERM-u6-1Hg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

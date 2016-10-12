@@ -43,17 +43,12 @@ class TableVC: UITableViewController {
         cell.memeImg.image = meme.memedImage
         cell.memeLabel.text = "\(meme.topText)...\(meme.bottomText)"
 
-
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let memeView = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorVC") as! MemeEditorVC
-        
-        memeView.imgView.image = self.memes[indexPath.row].image
-        memeView.topTextField.text = self.memes[indexPath.row].topText
-        memeView.bottomTextField.text = self.memes[indexPath.row].bottomText
-        
+        let memeView = self.storyboard?.instantiateViewControllerWithIdentifier("DetailMemeVC") as! DetailMemeVC
+        memeView.meme = self.memes[indexPath.row]
         self.navigationController?.pushViewController(memeView, animated: true)
     }
 

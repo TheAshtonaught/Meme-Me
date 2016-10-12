@@ -48,7 +48,6 @@ class CollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! MemeCollectionViewCell
         let meme = memes[indexPath.item]
         cell.memeImg.image = meme.memedImage
-        
     
         return cell
     }
@@ -57,7 +56,9 @@ class CollectionVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        print("item selected")
+        let memeView = self.storyboard?.instantiateViewControllerWithIdentifier("DetailMemeVC") as! DetailMemeVC
+        memeView.meme = self.memes[indexPath.item]
+        self.navigationController?.pushViewController(memeView, animated: true)
     }
     
 

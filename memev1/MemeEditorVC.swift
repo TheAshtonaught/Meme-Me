@@ -11,6 +11,7 @@ import AVFoundation
 
 class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
+    var memeSentFromDetail: Meme?
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -22,6 +23,12 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUI()
+        
+        if let memeFromDetail = memeSentFromDetail as Meme! {
+            imgView.image = memeFromDetail.image
+            topTextField.text = memeFromDetail.topText
+            bottomTextField.text = memeFromDetail.bottomText
+        }
         
         subscribeToKeyboardNotifications()
         pickerController.delegate = self
@@ -41,6 +48,11 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBAction func pickAnImage(sender: AnyObject) {
         presentViewController(pickerController, animated: true, completion: nil)
     }
+    
+    @IBAction func cancelBtnPressed(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
     @IBAction func cameraButtonPressed(sender: AnyObject) {
         if cameraButton.enabled {
             pickerController.sourceType = .Camera
@@ -172,7 +184,6 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     func save() {
         let meme = Meme(topText: topTextField.text, bottomText: bottomTextField.text, image: imgView.image, memedImage: memedImage)
-        print(meme.bottomText)
         let object = UIApplication.sharedApplication().delegate
         let appdel = object as! AppDelegate
         appdel.memes.append(meme)
@@ -188,10 +199,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                
                 self.save()
                 self.hideBars(false)
-                let collectionVC = self.storyboard!.instantiateViewControllerWithIdentifier("collectionVC")
-                self.navigationController?.pushViewController(collectionVC, animated: true)
-                
-                print("you have successfully saved a meme")
+                self.navigationController?.popToRootViewControllerAnimated(true)
             }else {
                 print(error.debugDescription)
             }
