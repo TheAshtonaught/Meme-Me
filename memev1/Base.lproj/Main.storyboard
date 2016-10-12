@@ -237,7 +237,7 @@
                     <navigationItem key="navigationItem" id="Ggv-Oz-mFR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="86P-SA-z1G">
                             <connections>
-                                <segue destination="7nb-cX-U9D" kind="show" id="BYT-hT-5Hq"/>
+                                <segue destination="7nb-cX-U9D" kind="presentation" id="ra9-TP-3OI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -297,7 +297,7 @@
                     <navigationItem key="navigationItem" id="PqX-fD-Nb5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="9bV-ve-Prc">
                             <connections>
-                                <segue destination="7nb-cX-U9D" kind="show" id="cFv-YZ-6YT"/>
+                                <segue destination="7nb-cX-U9D" kind="presentation" id="dJs-Ba-0Nw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -351,6 +351,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cFv-YZ-6YT"/>
+        <segue reference="dJs-Ba-0Nw"/>
     </inferredMetricsTieBreakers>
 </document>

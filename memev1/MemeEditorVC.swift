@@ -50,7 +50,7 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     }
     
     @IBAction func cancelBtnPressed(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func cameraButtonPressed(sender: AnyObject) {
@@ -72,6 +72,8 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         dismissViewControllerAnimated(true, completion: nil)
     }
     func setUI() {
+        toolbar.hidden = false
+        self.navigationController?.navigationBar.hidden = false
         tabBarController?.tabBar.hidden = true
         hideBars(false)
         stylizeTextField(topTextField)
@@ -199,9 +201,11 @@ class MemeEditorVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                
                 self.save()
                 self.hideBars(false)
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }else {
                 print(error.debugDescription)
+                self.toolbar.hidden = false
+                self.navigationController?.navigationBar.hidden = false
             }
         }
     }

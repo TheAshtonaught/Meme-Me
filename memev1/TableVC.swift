@@ -12,9 +12,6 @@ class TableVC: UITableViewController {
 
     var memes: [Meme]!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     override func viewWillAppear(animated: Bool) {
         tabBarController?.tabBar.hidden = false
         let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
@@ -51,5 +48,4 @@ class TableVC: UITableViewController {
         memeView.meme = self.memes[indexPath.row]
         self.navigationController?.pushViewController(memeView, animated: true)
     }
-
 }
